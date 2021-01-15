@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
-import './error.css';
+import React, {useState, useEffect} from 'react';
 
 
 
-const CounterApplication = () => {
+const UseThisExample = () => {
 
-    const [count, setCount] = useState(3);
-     
-    const counterReset = () => {
-        setCount(0);
+    const [size, setSize] = useState(window.innerWidth)
+
+    const ChangeWidthState = () => {
+        setSize(window.innerWidth)
+
     }
-    
-    return (
-        <>
-        <div className="container">
-            <h1>Counter Application</h1>
-        <br/><br/>
-        <span>{count}</span>
-        <br/><br/>
-        <button onClick={() => setCount(count + 1)}> Increase </button>
-        <button onClick={counterReset}>Reset</button>
-        <button onClick={() => setCount(count -1)}>Decrease</button>
-        </div>
+
+    useEffect(() => {
+        window.addEventListener('resize', ChangeWidthState)
         
-        </>
+    }, [])
+
+
+    return(
+        <React.Fragment>
+            <div>
+                <h1>
+                    Window Size
+                </h1>
+
+                <span>{size}</span>
+            </div>
+        </React.Fragment>
     )
+
 }
 
 
-export default CounterApplication;
+export default UseThisExample;
